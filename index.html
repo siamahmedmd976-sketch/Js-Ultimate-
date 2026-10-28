@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JS Ultimate</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f2f5fb;color:#18213a}
+header{background:#101a33;color:white;text-align:center;padding:28px 12px;border-bottom:4px solid #d9ad53}
+header h1{margin:0 0 10px}
+main{max-width:700px;margin:auto;padding:18px}
+input,select{box-sizing:border-box;width:100%;padding:13px;margin:8px 0;border:1px solid #ddd;border-radius:9px;font-size:16px;background:white}
+.card{background:white;margin:14px 0;padding:18px;border-radius:12px;box-shadow:0 3px 12px #0001}
+.card h3{margin-top:8px}
+.tag{color:#987021;font-size:13px}
+.btn{display:inline-block;background:#142345;color:white;padding:11px 16px;border-radius:8px;text-decoration:none}
+footer{text-align:center;padding:24px;color:#667}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 JS Ultimate</h1>
+<p>তোমার পড়াশোনা, তোমার সাফল্য</p>
+</header>
+<main>
+<h2>Study PDF Library</h2>
+<p>তোমার প্রয়োজনীয় পড়াশোনার PDF খুঁজে নাও।</p>
+<input id="search" placeholder="PDF-এর নাম লিখে খুঁজুন...">
+<select id="subject">
+<option value="all">সব বিষয়</option>
+<option value="alim">আলিম</option>
+<option value="bangla">বাংলা</option>
+<option value="english">ইংরেজি</option>
+</select>
+<div id="list">
+<div class="card" data-subject="alim bangla">
+<span class="tag">আলিম • বাংলা</span>
+<h3>বাংলা নোট PDF</h3>
+<p>বাংলা বিষয়ের পড়াশোনার নোট।</p>
+<a class="btn" href="bangla-notes.pdf" download>PDF ডাউনলোড</a>
+</div>
+<div class="card" data-subject="alim english">
+<span class="tag">আলিম • ইংরেজি</span>
+<h3>English Notes PDF</h3>
+<p>ইংরেজি বিষয়ের পড়াশোনার নোট।</p>
+<a class="btn" href="english-notes.pdf" download>PDF ডাউনলোড</a>
+</div>
+</div>
+</main>
+<footer>© 2026 JS Ultimate</footer>
+<script>
+const s=document.getElementById('search');
+const c=document.getElementById('subject');
+const cards=[...document.querySelectorAll('.card')];
+function filter(){
+cards.forEach(x=>{
+x.hidden=!(x.innerText.toLowerCase().includes(s.value.toLowerCase())&&(c.value==='all'||x.dataset.subject.split(' ').includes(c.value)));
+});
+}
+s.addEventListener('input',filter);
+c.addEventListener('change',filter);
+</script>
+</body>
+</html>
